@@ -42,7 +42,7 @@ public class WishMessageGenerator {
         // Implementation
     }
 }
-
+```
 # Spring Bean Configuration with `@Component` and Other Methods
 
 Based on `@Component("wmg")`, the **IOC container** creates an object for the `WishMessageGenerator` class with the name "wsg".
@@ -60,7 +60,6 @@ To configure pre-defined or third-party supplied Java classes as Spring Beans, y
     <!-- Bean ID         Fully Qualified Java Class -->
 </bean>
 
-```
 @Bean("dt1")
 public Date createDate() {
     return new Date();
@@ -167,7 +166,7 @@ The JNDI lookup code in a target class (Java application) searches for and retri
 // Sample JNDI Lookup code
 Context ctx = new InitialContext();
 MyService myService = (MyService) ctx.lookup("java:comp/env/MyService");
-
+```
 # Spring Bean and Container Management
 
 ## Container
@@ -213,7 +212,7 @@ public class WishMessageGenerator {
         // Implementation
     }
 }
-
+```
 # Spring Bean Configuration and Framework Overview
 
 ## Spring Bean Configuration with `@Component`
@@ -234,10 +233,10 @@ To configure pre-defined or third-party supplied Java classes as Spring Beans, y
 <bean id="dt" class="java.util.Date">
     <!-- Bean ID             Fully Qualified Java Class -->
 </bean>
-
+```
 ## 2. Using @Bean method
 ---------------------------------
-```
+```java
 @Bean("dt1")
 public Date createDate(){
 return new Date();
@@ -376,7 +375,7 @@ java app (java class) → target class
 Context context = new InitialContext(props); // details of JNDI registry like name, location, etc.
 PayTmService paytmService = (PayTmService) context.lookup("jpayTm");
 GooglePayService gpayService = (GooglePayService) context.lookup("java:comp/env/gpay");
-
+```
 # Dependency Management in Spring Framework
 
 ## Advantages of Dependency Lookup
