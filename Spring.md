@@ -518,3 +518,101 @@ The industry-standard IOC container is the `ApplicationContext` container.
 Both **BeanFactory** and **ApplicationContext** containers support all modes of dependency management. However, the `ApplicationContext` container offers additional features such as:
 - Support for annotations-driven configurations
 - Internationalization (I18n) support (makes the application work for different locales, including languages and countries)
+
+# Spring Framework: ApplicationContext IOC Container
+
+To create an "ApplicationContext" IOC Container, you need to create an object of one of the Spring API-supplied pre-defined classes that implement `org.springframework.context.ApplicationContext`.
+
+### Package: `org.springframework.context`
+
+#### Interface: `ApplicationContext`
+
+The `ApplicationContext` interface extends several other important interfaces:
+
+- `ApplicationEventPublisher`
+- `BeanFactory`
+- `EnvironmentCapable`
+- `HierarchicalBeanFactory`
+- `ListableBeanFactory`
+- `MessageSource`
+- `ResourceLoader`
+- `ResourcePatternResolver`
+
+#### All Known Subinterfaces:
+- `ConfigurableApplicationContext`
+- `ConfigurableWebApplicationContext`
+- `WebApplicationContext`
+
+#### All Known Implementing Classes:
+- `AbstractApplicationContext`
+- `AbstractRefreshableApplicationContext`
+- `AbstractRefreshableConfigApplicationContext`
+- `AbstractRefreshableWebApplicationContext`
+- `AbstractXmlApplicationContext`
+- `AnnotationConfigApplicationContext`
+- `AnnotationConfigWebApplicationContext`
+- `ClassPathXmlApplicationContext`
+- `FileSystemXmlApplicationContext`
+- `GenericApplicationContext`
+- `GenericGroovyApplicationContext`
+- `GenericWebApplicationContext`
+- `GenericXmlApplicationContext`
+- `GroovyWebApplicationContext`
+- `StaticApplicationContext`
+- `StaticWebApplicationContext`
+- `XmlWebApplicationContext`
+
+### Important Implementation Classes:
+1. `org.springframework.context.support.FileSystemXmlApplicationContext`
+2. `org.springframework.web.context.support.XmlWebApplicationContext`
+3. `org.springframework.web.context.support.AnnotationConfigWebApplicationContext`
+
+### Sample Code to Create "ApplicationContext" Container:
+
+In any Java application:
+
+```java
+FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext(".../applicationContext.xml");
+```
+
+# Spring Bean Configuration File
+
+### Spring Bean Configuration File
+
+- Any `<filename>.xml` can be used as the Spring bean configuration file name.
+- The standard/recommended name is `applicationContext.xml`.
+
+Using this file, we can provide input and instructions to the IOC container that is being created. The configuration file allows you to:
+
+- Configure Java classes as Spring beans
+- Specify the mode of dependency injections
+- Configure the Spring bean lifecycle
+- And more...
+
+### Different Ways of Developing Spring Applications
+
+1. **Using XML-driven Configurations**  
+   - The instructions to the IOC container are given **only** using the XML configuration file.
+
+2. **Using XML + Annotation-driven Configurations**  
+   - The instructions to the IOC container are given using both **annotations** and **XML file**.
+
+3. **Using 100% Code-driven Configuration (Java Config Approach)**  
+   - The instructions to the IOC container are given using **annotations** and **Java code statements**.
+
+4. **Using Spring Boot-driven Configurations**  
+   - The instructions to the IOC container are provided using **annotations**, **Java statements**, **properties files**, **YAML files**, etc.
+
+### `ApplicationContext` as a Subinterface of `BeanFactory`
+
+```plaintext
+org.springframework.beans.factory.BeanFactory
+          ^
+          |
+         | extends
+org.springframework.beans.factory.ListableBeanFactory
+          ^
+          | extends
+          |
+org.springframework.beans.factory.ApplicationContext
+```
