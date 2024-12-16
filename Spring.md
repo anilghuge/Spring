@@ -442,3 +442,79 @@ In **Dependency Injection**, the underlying server/container/framework/JVM/runti
   - **f. Lookup Method Injection**
   - **g. Method Injection / Method Replacer**
 
+# Creating IOC Container in Spring
+
+In Spring, the IOC (Inversion of Control) container is required for Spring Bean lifecycle management and dependency management.
+
+## Types of IOC Containers in Spring
+
+Spring provides two types of IOC containers:
+
+1. **BeanFactory IOC Container**
+2. **ApplicationContext IOC Container**
+
+`ApplicationContext` is an enhanced version of the `BeanFactory` IOC container.
+
+### Spring's IOC Containers are Lightweight
+
+Spring's IOC containers are lightweight because we can create them in any kind of Java application by simply creating an object of Spring's API-supplied pre-defined classes.
+
+### Creating a BeanFactory IOC Container
+
+To create a **BeanFactory IOC Container**, we need to instantiate a class that implements `org.springframework.beans.factory.BeanFactory` (either directly or indirectly). 
+
+**Package:** `org.springframework.beans.factory`  
+**Interface:** `BeanFactory`  
+
+#### Known Subinterfaces:
+- `ApplicationContext`
+- `AutowireCapableBeanFactory`
+- `ConfigurableApplicationContext`
+- `ConfigurableBeanFactory`
+- `ConfigurableListableBeanFactory`
+- `ConfigurableWebApplicationContext`
+- `HierarchicalBeanFactory`
+- `ListableBeanFactory`
+- `WebApplicationContext`
+
+#### Known Implementing Classes:
+- `AbstractApplicationContext`
+- `AbstractAutowireCapableBeanFactory`
+- `AbstractBeanFactory`
+- `AbstractRefreshableApplicationContext`
+- `AbstractRefreshableConfigApplicationContext`
+- `AbstractRefreshableWebApplicationContext`
+- `AbstractXmlApplicationContext`
+- `AnnotationConfigApplicationContext`
+- `AnnotationConfigWebApplicationContext`
+- `ClassPathXmlApplicationContext`
+- `DefaultListableBeanFactory`
+- `FileSystemXmlApplicationContext`
+- `GenericApplicationContext`
+- `GenericGroovyApplicationContext`
+- `GenericWebApplicationContext`
+- `GenericXmlApplicationContext`
+- `GroovyWebApplicationContext`
+- `SimpleJndiBeanFactory`
+- `StaticApplicationContext`
+- `StaticListableBeanFactory`
+- `StaticWebApplicationContext`
+- `XmlWebApplicationContext`
+
+### Preferred Classes to Create a BeanFactory IOC Container
+
+- **Package:** `org.springframework.web.context.support`  
+  **Class:** `XmlWebApplicationContext`
+
+- **Package:** `org.springframework.beans.factory.support`  
+  **Class:** `DefaultListableBeanFactory`
+
+### Industry Standard IOC Container
+
+The industry-standard IOC container is the `ApplicationContext` container.
+
+### Differences Between BeanFactory and ApplicationContext
+
+Both **BeanFactory** and **ApplicationContext** containers support all modes of dependency management. However, the `ApplicationContext` container offers additional features such as:
+- Support for annotations-driven configurations
+- Internationalization (I18n) support (makes the application work for different locales, including languages and countries)
