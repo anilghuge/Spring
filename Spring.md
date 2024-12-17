@@ -609,7 +609,7 @@ Using this file, we can provide input and instructions to the IOC container that
 org.springframework.beans.factory.BeanFactory
           ^
           |
-         | extends
+          | extends
 org.springframework.beans.factory.ListableBeanFactory
           ^
           | extends
