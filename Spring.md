@@ -616,3 +616,150 @@ org.springframework.beans.factory.ListableBeanFactory
           |
 org.springframework.beans.factory.ApplicationContext
 ```
+# Thumb Rules for Developing Spring Apps Using XML + Annotation Driven Configurations (Approach 2)
+
+1. **Configure Pre-defined Java Classes as Spring Beans Using `<bean>` Tags in Spring Bean Configuration File (XML)**  
+   - This is necessary because we cannot add annotations like `@Component` to pre-defined classes when we don't have access to their source code.
+
+   Example in `applicationContext.xml` (Spring Bean Configuration File):
+
+```xml
+   <bean id="dt" class="java.util.Date"/>
+```
+2. **Configuring User-defined Java Classes as Spring Beans Using `@Component` Annotation
+
+To configure user-defined Java classes as Spring Beans, you can use the `@Component` annotation directly in the `.java` file. The `@Component` annotation should be placed at the top of the class definition to indicate that the class is a Spring Bean. This allows Spring's component scanning to automatically detect and register the class as a Spring Bean in the IOC container.
+
+### Example:
+
+```java
+@Component("wmg")
+public class WishMessageGenerator {
+    // Class implementation
+    public String generateWishMessage(String name) {
+        return "Hello, " + name + "!";
+    }
+}
+```
+3. **Enabling Component Scanning Using `<context:component-scan>` Tag in Spring XML Configuration
+
+To enable Spring's component scanning feature, you need to add the `<context:component-scan>` tag in your Spring bean configuration XML file. This tag instructs the Spring IOC container to scan the specified packages and automatically register any classes annotated with `@Component`, `@Repository`, `@Service`, `@Controller`, etc., as Spring Beans.
+
+### Example:
+
+```xml
+<context:component-scan base-package="com.example"/>
+```
+# Spring Bean Configuration and Factory Methods
+
+## Component Scan in Spring
+
+To configure the Spring IOC container to search for beans:
+
+```xml
+<context:component-scan base-package="com.example.dao,com.example.service"/>
+```
+
+or
+
+```xml
+<context:component-scan base-package="com.example"/>
+```
+
+The IOC container will search in the specified package(s) and their subpackages for classes annotated with `@Component` to register them as Spring beans.
+
+## Creating the IOC Container in the `main` Method
+
+Example:
+
+```java
+public class ClientApp {
+    public static void main(String[] args) {
+        FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("../applicationContext.xml");
+        // Use the context to retrieve beans
+    }
+}
+```
+
+## Factory Methods
+
+A **Factory Method** is a method in a class that creates and returns an object of its own class or a related/different class.
+
+### Types of Factory Methods:
+
+1. **Static Factory Method**: Can be called on the class name.
+2. **Non-Static Factory Method / Instance Factory Method**: Must be called on an object.
+
+### Examples of Static Factory Methods
+
+#### Example 1:
+```java
+Thread t = Thread.currentThread(); // Returns its own class object
+```
+
+#### Example 2:
+```java
+Calendar cal = Calendar.getInstance(); // Returns a related class object (GregorianCalendar)
+```
+
+#### Example 3:
+```java
+Properties props = System.getProperties();
+```
+
+### Examples of Non-Static Factory Methods
+
+#### Example 1:
+```java
+String s1 = new String("hello");
+String s2 = s1.concat("123"); // Returns its own class object "hello123"
+```
+
+## Creating Spring Bean Objects Using Factory Methods
+
+### Methods to Create Spring Beans:
+
+1. **Using Constructor** (Default `<bean>` tag)
+2. **Using Static Factory Method** (`<bean>` tag with `factory-method` attribute)
+3. **Using Instance Factory Method** (`<bean>` tag with `factory-method` and `factory-bean` attributes)
+
+### Examples
+
+#### Example 1: Constructor
+```xml
+<bean id="dt" class="java.util.Date"/>
+```
+This creates a `java.util.Date` class object using its no-argument constructor.
+
+#### Example 2: Static Factory Method
+```xml
+<bean id="ldt" class="java.time.LocalDateTime" factory-method="now"/>
+```
+This calls `LocalDateTime.now()` to create and return a `LocalDateTime` object with the system's current date and time.
+
+#### Example 3: Constructor with Arguments
+```xml
+<bean id="sb" class="java.lang.StringBuffer">
+    <constructor-arg value="hello, how are you"/>
+</bean>
+```
+This creates a `StringBuffer` object with the value "hello, how are you".
+
+Equivalent Java code:
+```java
+StringBuffer sb = new StringBuffer("hello, how are you");
+```
+
+#### Example 4: Instance Factory Method
+```xml
+<bean id="s1" factory-bean="sb" factory-method="substring">
+    <constructor-arg value="0"/>
+    <constructor-arg value="5"/>
+</bean>
+```
+This calls the `substring` method of the `StringBuffer` bean `sb` and returns a `String` object with the value "hello".
+
+Equivalent Java code:
+```java
+String s1 = sb.substring(0, 5);
+```
