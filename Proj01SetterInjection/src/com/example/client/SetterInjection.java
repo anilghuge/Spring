@@ -12,6 +12,10 @@ public class SetterInjection {
 		WishMessageGenerator obj=(WishMessageGenerator)bean;
 		String generatorMessage = obj.getGeneratorMessage("Anil");
 		System.out.println("Result :"+generatorMessage);
+		
+		Object bean1 = context.getBean("wmg");
+		System.out.println(bean.hashCode()+" "+bean1.hashCode());
+		System.out.println("obj==obj1"+(bean==bean1));
 		context.close();
 	}
 }
