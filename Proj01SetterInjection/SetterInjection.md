@@ -82,7 +82,7 @@ The **Spring Framework's Inversion of Control (IOC) Container** includes built-i
 
 ## Conclusion
 
-In summary, an XML parser, like the one built into Springâ€™s IOC container, is an essential tool for efficiently reading, verifying, and processing XML data. The built-in **SAX parser** enables Spring applications to manage configurations defined in XML files in a memory-efficient and event-driven manner.
+In summary, an XML parser, like the one built into Spring’s IOC container, is an essential tool for efficiently reading, verifying, and processing XML data. The built-in **SAX parser** enables Spring applications to manage configurations defined in XML files in a memory-efficient and event-driven manner.
 
 # IOC Container and Spring Bean Scopes
 
