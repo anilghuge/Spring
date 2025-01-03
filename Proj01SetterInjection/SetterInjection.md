@@ -83,3 +83,22 @@ The **Spring Framework's Inversion of Control (IOC) Container** includes built-i
 ## Conclusion
 
 In summary, an XML parser, like the one built into Spring’s IOC container, is an essential tool for efficiently reading, verifying, and processing XML data. The built-in **SAX parser** enables Spring applications to manage configurations defined in XML files in a memory-efficient and event-driven manner.
+
+# IOC Container and Spring Bean Scopes
+
+## Bean Scopes in Spring
+
+The IOC container allows you to keep Spring bean class objects in different scopes. The default scope is **singleton** if no scope is specified.
+
+### 1. Singleton Scope
+
+- The **Singleton scope** means that the IOC container creates only one object for a Spring bean, irrespective of the number of times `ctx.getBean(-)` is called with the same bean ID.
+  
+### 2. BeanFactory IOC Container
+
+- The **BeanFactory** IOC container performs **lazy/late instantiation** of Spring beans. This means that objects for Spring beans are created only when `getBean(-)` is called (i.e., objects are created on demand).
+  
+### 3. ApplicationContext IOC Container
+
+- The **ApplicationContext** IOC container performs **eager/early/pre-instantiation** of singleton scope Spring beans. This means that the objects for singleton scope Spring beans are created the moment the IOC container is created, irrespective of whether `getBean(-)` is called or not.
+
