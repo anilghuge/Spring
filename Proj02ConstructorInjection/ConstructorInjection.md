@@ -68,4 +68,3 @@ public class MyBean {
     }
 }
 ```
-day 16:1 hr
