@@ -130,4 +130,94 @@ AOP is supported by frameworks such as:
    - Uses JDK dynamic proxies (`java.lang.reflect.Proxy`).  
    - Allows runtime method interception.  
    - More manual, requires writing custom `InvocationHandler`.  
+   
+   
+# Advantages of AOP Style Programming
+
+1. **Code is not clumsy** because both the primary logics and secondary logics are separated.
+2. **Improves the readability** of the code.
+3. **Improves the modularity**.
+4. You can **enable or disable the secondary logic** because secondary logic is separated without affecting the primary logics.
+5. **AOP style programming is an industry standard** nowadays.
+6. **Debugging becomes easier**.
+
+## AOP Enabled Frameworks/Technologies
+
+The frameworks/technologies that are based on the Aspect-Oriented Programming principles are called AOP-enabled frameworks/technologies/software. Examples include:
+
+- Spring AOP
+- AspectJ AOP
+- JBoss AOP
+
+**Note:** Spring Framework provides support for both Spring AOP and AspectJ AOP.
+![](AOP1.png)
+---
+
+# AOP Principles or Terminologies
+
+1. **Aspect**
+2. **Advice**
+3. **JoinPoint**
+4. **PointCut**
+5. **Target Class**
+6. **Weaving**
+7. **Proxy Class**
+
+---
+
+## 1. Aspect (What you want to apply)
+
+- It is the class that represents secondary logics. This is also called **middle service** or **cross-cutting concerns**.
+
+---
+
+## 2. Advice (How you want to apply)
+
+- The action taken by the aspect is called **Advice**. For any aspect, if we specify how it should be executed or behave, then it is called Advice.
+- **Aspect** contains secondary logic, whereas **Advice** contains secondary logic with an action plan.
+
+### Types of Advice:
+
+1. **Before Advice**: Executes before entering into the business method/target method of the target class.
+2. **After Advice**: Executes after the completion of execution of the target method of the target class.
+3. **Around Advice**: Executes before and after the target method/business method execution.
+4. **Throws Advice**: Executes only when an exception is raised in the target method/business method.
+
+---
+
+## 3. JoinPoint (Where you can apply)
+
+- The possible places in the target class where these aspects can be advised. These places can be fields (variables), constructors, methods, etc. These places are called **JoinPoints**.
+- **Spring AOP** supports only methods as JoinPoints.
+- If the target class has 20 business methods, then there are 20 JoinPoints.
+
+---
+
+## 4. PointCut (Collection of method names where we have applied or want to apply the aspect or advice)
+
+- A collection of JoinPoints where the aspects are advised (i.e., PointCut holds the set of business methods or target method names belonging to the target class to apply aspects/advice).
+- If the target class has 20 business methods, then there are 20 JoinPoints. But if we want to apply aspect/advice to only 10 methods, then this group of 10 method names is called 1 PointCut.
+
+---
+
+## 5. Target Class
+
+- The class that contains business methods or target methods having primary logics is called the **Target Class**.
+- This target class will have JoinPoints.PreAOP class is called target class
+
+---
+
+## 6. Weaving
+
+- The process of applying or mixing up secondary logics with primary logics and generating the **In-Memory Proxy Class** is called **Weaving**.
+- AOP-enabled software performs this weaving process.
+- The inputs for the weaving process are: **Target Class**, **Aspect/Advice Classes**, and the outcome of the weaving process is the **In-Memory Proxy Class**.
+
+---
+
+## 7. Proxy Class
+
+- The outcome of weaving done by the Spring AOP-enabled framework is called the **Proxy Class**.
+- This Proxy Class in the Spring AOP project is always an **In-Memory Generated Proxy Class**.
+- The **Post-AOP Class** is called the **Proxy Class**.
 
