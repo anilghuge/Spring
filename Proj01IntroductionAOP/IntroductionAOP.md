@@ -90,3 +90,44 @@ AOP is supported by frameworks such as:
 - AspectJ AOP
 - JBoss AOP
 - and others.
+
+### Here is a list of various **Aspect-Oriented Programming (AOP) implementations** apart from AspectJ:  
+
+### **1. Spring AOP**  
+   - A subset of AspectJ, built into Spring Framework.  
+   - Uses dynamic proxies (JDK or CGLIB).  
+   - Supports method-level interception using annotations (`@Aspect`).  
+   - Does **not** support field-level or constructor interception.  
+
+### **2. JBoss AOP** (Deprecated)  
+   - Provided by JBoss, supported full AspectJ-like weaving.  
+   - Allowed class, field, and method-level weaving.  
+   - Used XML-based and annotation-driven configuration.  
+   - Discontinued after JBoss shifted focus to CDI and Interceptors.  
+
+### **3. Guice AOP** (Google Guice)  
+   - Part of the Guice dependency injection framework.  
+   - Uses method interception via `MethodInterceptor` and `@AOP` bindings.  
+   - Proxy-based, similar to Spring AOP.  
+
+### **4. CDI Interceptors (Java EE / Jakarta EE)**  
+   - Built-in AOP mechanism in Java EE / Jakarta EE.  
+   - Uses `@Interceptor` and `@InterceptorBinding` annotations.  
+   - Works at method level (similar to Spring AOP).  
+   - Requires enabling interceptors in `beans.xml`.  
+
+### **5. Dynaop** (Dynamic AOP)  
+   - Lightweight AOP framework that uses dynamic proxies.  
+   - Allows runtime AOP without modifying bytecode.  
+   - Lesser known and not widely maintained.  
+
+### **6. Javassist AOP**  
+   - Uses **Javassist** bytecode manipulation library.  
+   - Allows modifying class bytecode dynamically at runtime.  
+   - Used in frameworks like Hibernate and WildFly.  
+
+### **7. Proxy-based AOP in Java**  
+   - Uses JDK dynamic proxies (`java.lang.reflect.Proxy`).  
+   - Allows runtime method interception.  
+   - More manual, requires writing custom `InvocationHandler`.  
+
