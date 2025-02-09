@@ -1,0 +1,14 @@
+/.metadata/
+.class
+.prefs
+.project
+.classpath
+*/bin/*
+
+
+*.class
+*.prefs
+*.project
+*.classpath
+*.gz
+

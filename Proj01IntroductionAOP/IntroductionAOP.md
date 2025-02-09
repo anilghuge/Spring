@@ -221,3 +221,17 @@ The frameworks/technologies that are based on the Aspect-Oriented Programming pr
 - This Proxy Class in the Spring AOP project is always an **In-Memory Generated Proxy Class**.
 - The **Post-AOP Class** is called the **Proxy Class**.
 
+## Note:
+
+- If you call a business method on the **Target Class**, then only the **primary logic** will be executed.
+- If you call a business method on the **In-Memory Generated Proxy Class**, then both the **secondary** and **primary logics** will be executed.
+
+![AOP Diagram](AOP2.png)
+
+---
+
+## Realtime Project Development:
+
+- In real-time project development, **secondary logics** are **verticals**, and **primary logics** are **horizontals**.
+- The **secondary logics** are developed **once** and are applied to **multiple primary logics** as **cross-cutting concerns** or **middleware services**.
+
