@@ -102,3 +102,33 @@ If `spring-context-<version>` is included as a dependency through Maven or Gradl
 1. Aspect/Advice classes are invasive (tightly coupled).
 2. Does not support any annotations to make Spring beans as aspect or advice classes.
 3. Spring AOP is less popular compared to AspectJAOP, which provides greater flexibility.
+
+# Spring AOP vs AspectJ AOP
+
+| **Feature**                          | **Spring AOP**                                                                 | **AspectJ AOP (Plain AspectJ AOP)**                                                                 |
+|--------------------------------------|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| **Aspect/Advice Classes**            | Invasive (tightly coupled)                                                   | Non-invasive                                                                                       |
+| **Annotation Support**               | No support for annotations to configure Aspect/Advice classes                | Annotation support provided for configuring Aspect/Advice classes                                  |
+| **Weaving Process**                  | Performs **runtime weaving** (proxy class generated dynamically at runtime)   | Performs **compile-time weaving** using the special `AspectJc` (AspectJ Compiler):<br>`.java (target) --> .class --> AspectJc --> Proxy Class`<br>`.java (advice) --> .class --> AspectJc` |
+| **JoinPoints**                       | Supports only **methods** as JoinPoints                                      | Supports **fields, constructors, and methods** as JoinPoints                                      |
+| **Pointcuts**                        | Supports both **static and dynamic** Pointcuts:<br>- Static: Based on method names<br>- Dynamic: Based on method names and argument values | Supports only **static** Pointcuts                                                                 |
+
+---
+
+## Spring Integrated AspectJ AOP
+
+Instead of competing with AspectJ AOP, the Spring Framework has integrated AspectJ AOP into itself. Due to this integration, certain changes have been introduced in Spring-integrated AspectJ AOP:
+
+### Changes:
+1. **Weaving Process**: Performs **runtime weaving** (proxy class is generated dynamically at runtime). The `AspectJc` compiler is no longer needed.
+2. **Pointcuts**: Still supports only **static** Pointcuts.
+3. **JoinPoints**: Supports only **methods** as JoinPoints.
+
+---
+
+## Additional Requirements for AspectJ AOP
+
+To work with AspectJ AOP, the following JAR files need to be added to the project as additional dependencies, along with the core module JAR files:
+
+1. `aspectj-weaver-<version>.jar`
+2. `aspectjrt-<version>.jar`
